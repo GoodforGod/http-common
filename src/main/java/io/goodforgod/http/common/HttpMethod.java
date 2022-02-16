@@ -101,37 +101,18 @@ public enum HttpMethod implements CharSequence {
      */
     @Nullable
     private static HttpMethod parseString(@NotNull String httpMethodName) {
-        switch (httpMethodName) {
-            case "GET":
-            case "get":
-                return GET;
-            case "POST":
-            case "post":
-                return POST;
-            case "PUT":
-            case "put":
-                return PUT;
-            case "PATCH":
-            case "patch":
-                return PATCH;
-            case "DELETE":
-            case "delete":
-                return DELETE;
-            case "OPTIONS":
-            case "options":
-                return OPTIONS;
-            case "HEAD":
-            case "head":
-                return HEAD;
-            case "TRACE":
-            case "trace":
-                return TRACE;
-            case "CONNECT":
-            case "connect":
-                return CONNECT;
-            default:
-                return null;
-        }
+        return switch (httpMethodName) {
+            case "GET", "get" -> GET;
+            case "POST", "post" -> POST;
+            case "PUT", "put" -> PUT;
+            case "PATCH", "patch" -> PATCH;
+            case "DELETE", "delete" -> DELETE;
+            case "OPTIONS", "options" -> OPTIONS;
+            case "HEAD", "head" -> HEAD;
+            case "TRACE", "trace" -> TRACE;
+            case "CONNECT", "connect" -> CONNECT;
+            default -> null;
+        };
     }
 
     @Override

@@ -16,8 +16,8 @@ repositories {
 group = groupId
 version = artifactVersion
 
-sourceCompatibility = JavaVersion.VERSION_11
-targetCompatibility = JavaVersion.VERSION_11
+sourceCompatibility = JavaVersion.VERSION_17
+targetCompatibility = JavaVersion.VERSION_17
 
 dependencies {
     implementation "org.jetbrains:annotations:22.0.0"
@@ -33,6 +33,8 @@ test {
         exceptionFormat("full")
         showStandardStreams(false)
     }
+
+    excludes = ["io.goodforgod.http.common.MimeExtensions",]
 
     reports {
         html.enabled(false)

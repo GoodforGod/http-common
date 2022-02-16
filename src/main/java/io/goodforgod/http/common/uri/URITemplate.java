@@ -245,8 +245,8 @@ class URITemplate implements Comparable<URITemplate> {
             if (result == null) {
                 continue;
             }
-            if (segment instanceof UriTemplateParser.VariablePathSegment) {
-                UriTemplateParser.VariablePathSegment varPathSegment = (UriTemplateParser.VariablePathSegment) segment;
+
+            if (segment instanceof UriTemplateParser.VariablePathSegment varPathSegment) {
                 if (varPathSegment.isQuerySegment && !queryParameter) {
                     // reset anyPrevious* when we reach query parameters
                     queryParameter = true;
@@ -456,14 +456,10 @@ class URITemplate implements Comparable<URITemplate> {
         if (len > 1) {
             boolean isVar = templateString.charAt(0) == VAR_START;
             if (isVar) {
-                switch (templateString.charAt(1)) {
-                    case SLASH_OPERATOR:
-                    case QUERY_OPERATOR:
-                    case HASH_OPERATOR:
-                        return false;
-                    default:
-                        return true;
-                }
+                return switch (templateString.charAt(1)) {
+                    case SLASH_OPERATOR, QUERY_OPERATOR, HASH_OPERATOR -> false;
+                    default -> true;
+                };
             }
         }
         return templateString.charAt(0) != SLASH_OPERATOR;
@@ -590,37 +586,35 @@ class URITemplate implements Comparable<URITemplate> {
                                     final boolean encode;
                                     final boolean repeatPrefix;
                                     switch (operator) {
-                                        case '+':
+                                        case '+' -> {
                                             encode = false;
                                             prefix = null;
                                             delimiter = ",";
                                             repeatPrefix = varCount < 1;
-                                            break;
-                                        case HASH_OPERATOR:
+                                        }
+                                        case HASH_OPERATOR -> {
                                             encode = false;
                                             repeatPrefix = varCount < 1;
                                             prefix = String.valueOf(operator);
                                             delimiter = ",";
-                                            break;
-                                        case DOT_OPERATOR:
-                                        case SLASH_OPERATOR:
+                                        }
+                                        case DOT_OPERATOR, SLASH_OPERATOR -> {
                                             encode = true;
                                             repeatPrefix = varCount < 1;
                                             prefix = String.valueOf(operator);
                                             delimiter = modifier == EXPAND_MODIFIER
                                                     ? prefix
                                                     : ",";
-                                            break;
-                                        case ';':
+                                        }
+                                        case ';' -> {
                                             encode = true;
                                             repeatPrefix = true;
                                             prefix = operator + val + '=';
                                             delimiter = modifier == EXPAND_MODIFIER
                                                     ? prefix
                                                     : ",";
-                                            break;
-                                        case QUERY_OPERATOR:
-                                        case AND_OPERATOR:
+                                        }
+                                        case QUERY_OPERATOR, AND_OPERATOR -> {
                                             encode = true;
                                             repeatPrefix = true;
                                             prefix = varCount < 1
@@ -629,12 +623,13 @@ class URITemplate implements Comparable<URITemplate> {
                                             delimiter = (modifier == EXPAND_MODIFIER)
                                                     ? AND_OPERATOR + val + '='
                                                     : ",";
-                                            break;
-                                        default:
+                                        }
+                                        default -> {
                                             repeatPrefix = varCount < 1;
                                             encode = true;
                                             prefix = null;
                                             delimiter = ",";
+                                        }
                                     }
                                     String modifierStr = modBuff.toString();
                                     char modifierChar = modifier;
@@ -647,22 +642,12 @@ class URITemplate implements Comparable<URITemplate> {
                                 }
                                 boolean hasAnotherVar = state == STATE_VAR_NEXT && c != VAR_END;
                                 if (hasAnotherVar) {
-                                    String delimiter;
-                                    switch (operator) {
-                                        case ';':
-                                            delimiter = null;
-                                            break;
-                                        case QUERY_OPERATOR:
-                                        case AND_OPERATOR:
-                                            delimiter = "&";
-                                            break;
-                                        case DOT_OPERATOR:
-                                        case SLASH_OPERATOR:
-                                            delimiter = String.valueOf(operator);
-                                            break;
-                                        default:
-                                            delimiter = ",";
-                                    }
+                                    String delimiter = switch (operator) {
+                                        case ';' -> null;
+                                        case QUERY_OPERATOR, AND_OPERATOR -> "&";
+                                        case DOT_OPERATOR, SLASH_OPERATOR -> String.valueOf(operator);
+                                        default -> ",";
+                                    };
                                     varDelimiter = delimiter;
                                     varCount++;
                                 } else {
@@ -680,15 +665,16 @@ class URITemplate implements Comparable<URITemplate> {
                                 continue;
                             default:
                                 switch (modifier) {
-                                    case EXPAND_MODIFIER:
-                                        throw new IllegalStateException(
-                                                "Expansion modifier * must be immediately followed by a closing brace '}'");
-                                    case ':':
+                                    case EXPAND_MODIFIER -> throw new IllegalStateException(
+                                            "Expansion modifier * must be immediately followed by a closing brace '}'");
+                                    case ':' -> {
                                         modBuff.append(c);
                                         continue;
-                                    default:
+                                    }
+                                    default -> {
                                         buff.append(c);
                                         continue;
+                                    }
                                 }
                         }
                     case STATE_VAR_START:
