@@ -1,12 +1,13 @@
-package io.goodforgod.http;
+package io.goodforgod.http.common;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
  * An enum containing the valid HTTP methods.
- *
- * <a href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html">The World Wide Web Consortium</a>
+ * <a href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html">The World Wide Web
+ * Consortium</a>
+ * 
  * @author Graeme Rocher
  * @author Anton Kurako (GoodforGod)
  * @since 15.02.2022

@@ -1,4 +1,4 @@
-package io.goodforgod.http.uri;
+package io.goodforgod.http.common.uri;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URI;

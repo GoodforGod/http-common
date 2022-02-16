@@ -1,6 +1,6 @@
-package io.goodforgod.http.uri
+package io.goodforgod.http.common.uri
 
-import io.goodforgod.http.uri.URITemplate
+
 import spock.lang.Specification
 import spock.lang.Unroll
 

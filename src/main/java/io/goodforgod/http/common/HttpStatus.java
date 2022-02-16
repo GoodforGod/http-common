@@ -1,18 +1,18 @@
-package io.goodforgod.http;
+package io.goodforgod.http.common;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Objects;
-
 /**
  * Represents HTTP status codes
- * <a href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html">The World Wide Web Consortium</a>
+ * <a href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html">The World Wide Web
+ * Consortium</a>
  *
  * @author Graeme Rocher
  * @author Anton Kurako (GoodforGod)
  * @since 15.02.2022
  */
 public enum HttpStatus implements CharSequence {
+
     CONTINUE(100, "Continue"),
     SWITCHING_PROTOCOLS(101, "Switching Protocols"),
     PROCESSING(102, "Processing"),
