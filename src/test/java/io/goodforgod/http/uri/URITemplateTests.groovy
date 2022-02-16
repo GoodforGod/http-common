@@ -1,5 +1,6 @@
-package io.goodforgod.http
+package io.goodforgod.http.uri
 
+import io.goodforgod.http.uri.URITemplate
 import spock.lang.Specification
 import spock.lang.Unroll
 
@@ -7,7 +8,7 @@ import spock.lang.Unroll
  * @author Anton Kurako (GoodforGod)
  * @since 22.08.2021
  */
-class UriTemplateTests extends Specification {
+class URITemplateTests extends Specification {
 
     @Unroll
     void "Test nest template #template with path #nested and #arguments"() {

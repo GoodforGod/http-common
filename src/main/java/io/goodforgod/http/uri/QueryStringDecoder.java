@@ -1,4 +1,4 @@
-package io.goodforgod.http;
+package io.goodforgod.http.uri;
 
 import java.net.URI;
 import java.nio.ByteBuffer;
@@ -7,7 +7,7 @@ import java.nio.charset.*;
 import java.util.*;
 
 /**
- * @author graemerocher
+ * @author Graeme Rocher
  * @author Anton Kurako (GoodforGod)
  * @since 15.02.2022
  */

@@ -1,6 +1,6 @@
-package io.goodforgod.http
+package io.goodforgod.http.uri
 
-import spock.lang.Issue
+import io.goodforgod.http.uri.URIBuilder
 import spock.lang.Specification
 import spock.lang.Unroll
 
@@ -8,7 +8,7 @@ import spock.lang.Unroll
  * @author Anton Kurako (GoodforGod)
  * @since 22.08.2021
  */
-class UriBuilderTests extends Specification {
+class URIBuilderTests extends Specification {
 
     void "test query param order"() {
         Map<String, String> params = new LinkedHashMap<>()

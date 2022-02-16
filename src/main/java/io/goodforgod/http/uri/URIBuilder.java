@@ -1,4 +1,4 @@
-package io.goodforgod.http;
+package io.goodforgod.http.uri;
 
 import java.net.URI;
 import java.util.Arrays;
@@ -11,7 +11,7 @@ import org.jetbrains.annotations.Nullable;
 /**
  * Helper for building URI (Inspired by Micronaut UriBuilder)
  *
- * @author graemerocher
+ * @author Graeme Rocher
  * @author Anton Kurako (GoodforGod)
  * @since 15.02.2022
  */

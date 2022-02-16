@@ -1,4 +1,4 @@
-package io.goodforgod.http;
+package io.goodforgod.http.uri;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URI;
@@ -11,7 +11,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * @author graemerocher
+ * @author Graeme Rocher
  * @author Anton Kurako (GoodforGod)
  * @since 15.02.2022
  */
