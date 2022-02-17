@@ -11,7 +11,7 @@ import java.util.*;
  * @author Anton Kurako (GoodforGod)
  * @since 15.02.2022
  */
-class QueryStringDecoder {
+final class QueryStringDecoder {
 
     private static final String EMPTY_STRING = "";
     private static final char SPACE = 0x20;

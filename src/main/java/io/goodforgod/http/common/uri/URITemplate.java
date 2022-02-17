@@ -15,7 +15,7 @@ import org.jetbrains.annotations.NotNull;
  * @author Anton Kurako (GoodforGod)
  * @since 15.02.2022
  */
-class URITemplate implements Comparable<URITemplate> {
+final class URITemplate implements Comparable<URITemplate> {
 
     private static final String STRING_PATTERN_SCHEME = "([^:/?#]+):";
     private static final String STRING_PATTERN_USER_INFO = "([^@\\[/?#]*)";

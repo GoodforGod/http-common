@@ -15,16 +15,16 @@ import org.jetbrains.annotations.Nullable;
  * @author Anton Kurako (GoodforGod)
  * @since 15.02.2022
  */
-class DefaultURIBuilder implements URIBuilder {
+final class DefaultURIBuilder implements URIBuilder {
 
     private String authority;
     private String scheme;
     private String userInfo;
     private String host;
     private int port = -1;
-    private StringBuilder path = new StringBuilder();
     private String fragment;
 
+    private final StringBuilder path;
     private final Map<String, List<String>> queryParams;
 
     /**
@@ -87,6 +87,8 @@ class DefaultURIBuilder implements URIBuilder {
                         this.fragment = fragment;
                     }
                     this.path = new StringBuilder(path);
+                } else {
+                    this.path = new StringBuilder();
                 }
                 if (query != null) {
                     final Map<String, List<String>> parameters = new QueryStringDecoder(query).parameters();

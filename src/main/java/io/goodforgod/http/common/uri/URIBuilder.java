@@ -3,7 +3,6 @@ package io.goodforgod.http.common.uri;
 import java.net.URI;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.Objects;
 import java.util.stream.Stream;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -103,9 +102,11 @@ public interface URIBuilder {
     @NotNull
     default URIBuilder param(String name, @NotNull Object... values) {
         final String[] valuesAsStrings = Arrays.stream(values)
-                .flatMap(v -> (v instanceof Collection)
-                        ? ((Collection<?>) v).stream()
-                        : Stream.of(v))
+                .flatMap(v -> {
+                    if (v instanceof Collection)
+                        return ((Collection<?>) v).stream();
+                    return Stream.of(v);
+                })
                 .map(String::valueOf)
                 .toArray(String[]::new);
 
@@ -134,9 +135,11 @@ public interface URIBuilder {
     @NotNull
     default URIBuilder replaceParam(@NotNull String name, @NotNull Object... values) {
         final String[] valuesAsStrings = Arrays.stream(values)
-                .flatMap(v -> (v instanceof Collection)
-                        ? ((Collection<?>) v).stream()
-                        : Stream.of(v))
+                .flatMap(v -> {
+                    if (v instanceof Collection)
+                        return ((Collection<?>) v).stream();
+                    return Stream.of(v);
+                })
                 .map(String::valueOf)
                 .toArray(String[]::new);
 
@@ -159,7 +162,6 @@ public interface URIBuilder {
      * @return The builder
      */
     static @NotNull URIBuilder of(@NotNull URI uri) {
-        Objects.requireNonNull(uri);
         return new DefaultURIBuilder(uri);
     }
 
@@ -170,7 +172,6 @@ public interface URIBuilder {
      * @return The builder
      */
     static @NotNull URIBuilder of(@NotNull CharSequence uri) {
-        Objects.requireNonNull(uri);
         return new DefaultURIBuilder(uri);
     }
 }
