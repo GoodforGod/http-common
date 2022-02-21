@@ -21,7 +21,8 @@ class MediaTypeOfTests extends Assertions {
                         "application"),
                 Arguments.of("application/hal+json", null, "application/hal+json", "json", Map.of(), 1.0, "hal+json",
                         "application"),
-                Arguments.of("application/hal+xml", null, "application/hal+xml", "xml", Map.of(), 1.0, "hal+xml", "application"),
+                Arguments.of("application/hal+xml;foo=bar", null, "application/hal+xml", "xml", Map.of("foo", "bar"), 1.0,
+                        "hal+xml", "application"),
                 Arguments.of("application/json", null, "application/json", "json", Map.of(), 1.0, "json", "application"),
                 Arguments.of("text/html;charset=utf-8", null, "text/html", "html", Map.of("charset", "UTF-8"), 1.0, "html",
                         "text"));

@@ -16,7 +16,7 @@ public enum HttpStatus implements CharSequence {
     CONTINUE(100, "Continue"),
     SWITCHING_PROTOCOLS(101, "Switching Protocols"),
     PROCESSING(102, "Processing"),
-    OK(200, "Ok"),
+    OK(200, "OK"),
     CREATED(201, "Created"),
     ACCEPTED(202, "Accepted"),
     NON_AUTHORITATIVE_INFORMATION(203, "Non-Authoritative Information"),

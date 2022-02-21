@@ -20,7 +20,7 @@ sourceCompatibility = JavaVersion.VERSION_17
 targetCompatibility = JavaVersion.VERSION_17
 
 dependencies {
-    implementation "org.jetbrains:annotations:22.0.0"
+    compileOnly "org.jetbrains:annotations:22.0.0"
 
     testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:5.8.2"
     testImplementation "org.junit.jupiter:junit-jupiter-api:5.8.2"
@@ -35,11 +35,20 @@ test {
         showStandardStreams(false)
     }
 
-    excludes = ["io.goodforgod.http.common.MimeExtensions",]
-
     reports {
         html.enabled(false)
         junitXml.enabled(false)
+    }
+}
+
+jacocoTestReport {
+    afterEvaluate {
+        classDirectories.setFrom(files(classDirectories.files.collect {
+            fileTree(dir: it, exclude: [
+                    "io/goodforgod/http/common/MimeExtensions.class",
+                    "io/goodforgod/http/common/HttpStatus.class",
+            ])
+        }))
     }
 }
 
@@ -60,7 +69,7 @@ publishing {
             pom {
                 name = "http-common"
                 url = "https://github.com/GoodforGod/$artifactId"
-                description = "description."
+                description = "Small library with simple HTTP common components like HttpStatus, MediaType, URIBuilder, etc."
 
                 license {
                     name = "Apache License 2.0"
