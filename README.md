@@ -6,7 +6,7 @@
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=GoodforGod_http-common&metric=coverage)](https://sonarcloud.io/dashboard?id=GoodforGod_http-common)
 [![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=GoodforGod_http-common&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=GoodforGod_http-common)
 
-Small library with simple HTTP common components like HttpStatus, MediaType, URIBuilder, etc.
+Small library with HTTP common components like HttpStatus, MediaType, URIBuilder, etc.
 
 Have no dependencies.
 
@@ -28,9 +28,34 @@ implementation "io.goodforgod:http-common:0.9.0"
 
 ## HttpStatus
 
+Library provides *HttpStatus* with code and reasons, all mostly used HttpStatus are present there for easier use.
+
+```java
+HttpStatus status = HttpStatus.ACCEPTED;
+
+int code = status.code();
+String reason = status.reason();
+
+HttpStatus statusAccepted = HttpStatus.valueOf(201);
+```
+
 ## MediaType
 
+Library provides *MediaType* class for correctly parsing and interpreting MediaType / ContentTypes.
+
+There are plenty of widely used and preconfigured MediaTypes.
+
+```java
+MediaType jsonType = MediaType.APPLICATION_JSON_UTF_8_TYPE;
+
+MediaType type1 = MediaType.of("application/json");
+
+Optional<MediaType> type2 = MediaType.ofExtension("json");
+```
+
 ## URIBuilder
+
+Library provide URIBuilder for easier and safer way of building URI.
 
 ```java
 URIBuilder.of("https://api.etherscan.io").path("/api")

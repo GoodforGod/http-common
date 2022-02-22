@@ -69,7 +69,7 @@ publishing {
             pom {
                 name = "http-common"
                 url = "https://github.com/GoodforGod/$artifactId"
-                description = "Small library with simple HTTP common components like HttpStatus, MediaType, URIBuilder, etc."
+                description = "Small library with HTTP common components like HttpStatus, MediaType, URIBuilder, etc."
 
                 license {
                     name = "Apache License 2.0"
