@@ -12,6 +12,8 @@ Have no dependencies.
 
 ## Dependency :rocket:
 
+Java 17+
+
 [**Gradle**](https://mvnrepository.com/artifact/io.goodforgod/http-common)
 ```groovy
 implementation "io.goodforgod:http-common:0.9.0"
