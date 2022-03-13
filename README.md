@@ -12,11 +12,11 @@ Have no dependencies.
 
 ## Dependency :rocket:
 
-Java 17+
+Java 17+ support.
 
 [**Gradle**](https://mvnrepository.com/artifact/io.goodforgod/http-common)
 ```groovy
-implementation "io.goodforgod:http-common:0.9.0"
+implementation "io.goodforgod:http-common:0.10.0"
 ```
 
 [**Maven**](https://mvnrepository.com/artifact/io.goodforgod/http-common)
@@ -24,7 +24,7 @@ implementation "io.goodforgod:http-common:0.9.0"
 <dependency>
     <groupId>io.goodforgod</groupId>
     <artifactId>http-common</artifactId>
-    <version>0.9.0</version>
+    <version>0.10.0</version>
 </dependency>
 ```
 
@@ -39,6 +39,15 @@ int code = status.code();
 String reason = status.reason();
 
 HttpStatus statusAccepted = HttpStatus.valueOf(201);
+```
+
+## HttpMethod
+
+Describes *HttpMethod* common methods of HTTP protocol.
+
+```java
+final HttpMethod method = HttpMethod.of("get");
+assertEquarls(HttpMethod.GET, method);
 ```
 
 ## MediaType
@@ -64,6 +73,22 @@ URIBuilder.of("https://api.etherscan.io").path("/api")
                 .param("module", "block")
                 .param("action", "getblockreward")
                 .build()
+```
+
+## HttpHeaders
+
+Describes HTTP headers and can be instantiated via different builders available.
+
+```java
+ final Map<String, List<String>> h = new HashMap<>();
+h.put(HttpHeaders.CONNECTION, List.of("keep-alive"));
+h.put(HttpHeaders.CONTENT_LENGTH, List.of("72"));
+h.put(HttpHeaders.CONTENT_TYPE, List.of("application/json"));
+
+final HttpHeaders headers = HttpHeaders.ofMultiMap(h);
+
+final Optional<Long> contentLength = headers.contentLength();
+final Optional<MediaType> mediaType = headers.contentType();
 ```
 
 ## License
