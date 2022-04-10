@@ -57,11 +57,11 @@ Library provides *MediaType* class for correctly parsing and interpreting MediaT
 There are plenty of widely used and preconfigured MediaTypes.
 
 ```java
-MediaType jsonType = MediaType.APPLICATION_JSON_UTF_8_TYPE;
+MediaType jsonMediaTypeUtf8 = MediaType.APPLICATION_JSON_UTF_8_TYPE;
 
-MediaType type1 = MediaType.of("application/json");
+MediaType mediaType = MediaType.of("application/json");
 
-Optional<MediaType> type2 = MediaType.ofExtension("json");
+Optional<MediaType> jsonMediaType = MediaType.ofExtension("json");
 ```
 
 ## URIBuilder
@@ -80,15 +80,28 @@ URIBuilder.of("https://api.etherscan.io").path("/api")
 Describes HTTP headers and can be instantiated via different builders available.
 
 ```java
- final Map<String, List<String>> h = new HashMap<>();
-h.put(HttpHeaders.CONNECTION, List.of("keep-alive"));
-h.put(HttpHeaders.CONTENT_LENGTH, List.of("72"));
-h.put(HttpHeaders.CONTENT_TYPE, List.of("application/json"));
+final Map<String, List<String>> headerMap = new HashMap<>();
+headerMap.put(HttpHeaders.CONNECTION, List.of("keep-alive"));
+headerMap.put(HttpHeaders.CONTENT_LENGTH, List.of("72"));
+headerMap.put(HttpHeaders.CONTENT_TYPE, List.of("application/json"));
 
-final HttpHeaders headers = HttpHeaders.ofMultiMap(h);
+final HttpHeaders headers = HttpHeaders.ofMultiMap(headerMap);
 
 final Optional<Long> contentLength = headers.contentLength();
 final Optional<MediaType> mediaType = headers.contentType();
+```
+
+## FormattedException
+
+Exception that allow to format messages like SLF4J logger and other similar.
+
+```java
+throw new FormattedException("Failed for {} with code {}", "Bob", 200);
+```
+
+Resulted exception message:
+```text
+Failed for Bob with code 200
 ```
 
 ## License
