@@ -16,7 +16,7 @@ Java 17+ support.
 
 [**Gradle**](https://mvnrepository.com/artifact/io.goodforgod/http-common)
 ```groovy
-implementation "io.goodforgod:http-common:0.10.0"
+implementation "io.goodforgod:http-common:1.0.0-SNAPSHOT"
 ```
 
 [**Maven**](https://mvnrepository.com/artifact/io.goodforgod/http-common)
@@ -24,7 +24,7 @@ implementation "io.goodforgod:http-common:0.10.0"
 <dependency>
     <groupId>io.goodforgod</groupId>
     <artifactId>http-common</artifactId>
-    <version>0.10.0</version>
+    <version>1.0.0-SNAPSHOT</version>
 </dependency>
 ```
 
